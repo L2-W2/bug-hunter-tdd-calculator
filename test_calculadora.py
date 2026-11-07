@@ -55,3 +55,7 @@ def test_logaritmo_base10():
 
 def test_logaritmo_base10_zero():
     assert logaritmo_base10(0) == "Erro: Logaritmo de número não positivo"
+
+
+def test_fatorial_negativo():
+    assert fatorial(-3) == "Erro: Fatorial de número negativo"
