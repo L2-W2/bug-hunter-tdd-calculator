@@ -11,7 +11,7 @@
 |---|---|---|---|
 | BUG-01 | Adição devolve 2x + y | Alta | Não resolvido |
 | BUG-02 | Divisão por zero não tratada | Alta | Não resolvido |
-| BUG-03 | Fatorial sempre devolve 0 | Alta | Não resolvido |
+| BUG-03 | Fatorial sempre devolve 0 | Alta | Resolvido |
 | BUG-04 | Fatorial sem validação de número negativo | Média | Não resolvido |
 | BUG-05 | Logaritmo natural usa função inexistente `np.ln` | Alta | Não resolvido |
 | BUG-06 | Logaritmo base 10 usa `np.log` | Alta | Não resolvido |
@@ -19,7 +19,7 @@
 | BUG-08 | Seno listado no menu, mas não implementado | Média | Não resolvido |
 | BUG-09 | Cosseno chama função inexistente | Alta | Não resolvido |
 | BUG-10 | Tangente chama função inexistente | Alta | Não resolvido |
-| BUG-11 | Menu executa ao importar o arquivo | Média | Não resolvido |
+| BUG-11 | Menu executa ao importar o arquivo | Média | Resolvido |
 
 ---
 
@@ -74,9 +74,9 @@
 - **Resultado obtido:** `0`
 - **Evidência:** ![Evidência](evidencias/bug03-04-fatorial.png)
 - **Severidade:** Alta
-- **Impacto:** a operação nunca devolve resultado correto (exceto, por acaso, nenhum caso).
+- **Impacto:** a operação nunca devolve resultado correto.
 - **Possível solução:** `range(1, x+1)`
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-04 - Fatorial sem validação de número negativo
 
@@ -220,4 +220,40 @@
 - **Severidade:** Média
 - **Impacto:** impede testar as funções de forma automatizada.
 - **Possível solução:** proteger com `if __name__ == "__main__":`.
-- **Status:** Não resolvido
+- **Status:** Resolvido em 06/11/2026 (corrigido como pré-requisito para os testes automatizados)
+
+---
+
+## Correção do BUG-03 com TDD
+
+- **Bug corrigido:** BUG-03 - Fatorial sempre devolve 0
+- **Data:** 07/11/2026
+- **O que foi alterado:** na função `fatorial`, o laço `for i in range(x+1)` passou a ser `for i in range(1, x+1)`.
+- **Por que foi alterado:** o laço começava em 0, então `fat *= 0` zerava o resultado em toda chamada. Começando em 1, o produto é calculado corretamente.
+- **Como isso resolve o bug:** `fatorial(5)` passa a devolver `120`, em vez de `0`.
+
+### Preparação
+
+Antes dos testes, o BUG-11 foi corrigido: a chamada `calculadora_cientifica()` foi protegida com `if __name__ == "__main__":`, para que o pytest consiga importar o arquivo sem abrir o menu. Commit: `refactor: protege execucao do menu com __main__`.
+
+### Ciclo TDD
+
+1. **Red:** foi escrito o teste `test_fatorial_de_5` (`assert fatorial(5) == 120`), que falhou com `assert 0 == 120`. Commit: `test: adiciona teste que falha para BUG-03 (fatorial)`.
+
+   ![Red](evidencias/tdd-01-red.png)
+
+2. **Green:** correção mínima no laço (`range(1, x+1)`). O teste passou. Commit: `fix: corrige fatorial para iniciar o laco em 1 (BUG-03)`.
+
+   ![Green](evidencias/tdd-02-green.png)
+
+3. **Refactor:** adição de docstring à função `fatorial`, sem alterar o comportamento. Commit: `refactor: adiciona docstring ao fatorial`.
+
+### Verificação final
+
+Foram adicionados testes de regressão (`fatorial(0)`, `fatorial(1)`, subtração, multiplicação e raiz quadrada, com valor válido e negativo). Todos os 7 testes passam, então a correção não introduziu novos bugs. Commit: `test: adiciona testes de regressao para fatorial, subtracao, multiplicacao e raiz`.
+
+![Todos os testes](evidencias/tdd-03-todos-testes.png)
+
+### Observação
+
+O BUG-04 (fatorial de número negativo) continua aberto. Ele não foi tratado nesta correção para manter a mudança mínima.
