@@ -9,16 +9,16 @@
 
 | ID | Título | Severidade | Status |
 |---|---|---|---|
-| BUG-01 | Adição devolve 2x + y | Alta | Não resolvido |
-| BUG-02 | Divisão por zero não tratada | Alta | Não resolvido |
+| BUG-01 | Adição devolve 2x + y | Alta | Resolvido |
+| BUG-02 | Divisão por zero não tratada | Alta | Resolvido |
 | BUG-03 | Fatorial sempre devolve 0 | Alta | Resolvido |
-| BUG-04 | Fatorial sem validação de número negativo | Média | Não resolvido |
-| BUG-05 | Logaritmo natural usa função inexistente `np.ln` | Alta | Não resolvido |
-| BUG-06 | Logaritmo base 10 usa `np.log` | Alta | Não resolvido |
-| BUG-07 | Logaritmo base 10 aceita o valor 0 | Média | Não resolvido |
-| BUG-08 | Seno listado no menu, mas não implementado | Média | Não resolvido |
-| BUG-09 | Cosseno chama função inexistente | Alta | Não resolvido |
-| BUG-10 | Tangente chama função inexistente | Alta | Não resolvido |
+| BUG-04 | Fatorial sem validação de número negativo | Média | Resolvido |
+| BUG-05 | Logaritmo natural usa função inexistente `np.ln` | Alta | Resolvido |
+| BUG-06 | Logaritmo base 10 usa `np.log` | Alta | Resolvido |
+| BUG-07 | Logaritmo base 10 aceita o valor 0 | Média | Resolvido |
+| BUG-08 | Seno listado no menu, mas não implementado | Média | Resolvido |
+| BUG-09 | Cosseno chama função inexistente | Alta | Resolvido |
+| BUG-10 | Tangente chama função inexistente | Alta | Resolvido |
 | BUG-11 | Menu executa ao importar o arquivo | Média | Resolvido |
 
 ---
@@ -39,7 +39,7 @@
 - **Severidade:** Alta
 - **Impacto:** a operação mais básica devolve resultado errado.
 - **Possível solução:** `return x + y`
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-02 - Divisão por zero não tratada
 
@@ -58,7 +58,7 @@
 - **Severidade:** Alta
 - **Impacto:** o usuário perde a sessão por uma entrada comum.
 - **Possível solução:** retornar mensagem de erro quando `y == 0`, como já é feito na raiz quadrada.
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-03 - Fatorial sempre devolve 0
 
@@ -94,7 +94,7 @@
 - **Severidade:** Média
 - **Impacto:** resultado matemático incorreto, sem aviso ao usuário.
 - **Possível solução:** retornar mensagem de erro quando `x < 0`.
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-05 - Logaritmo natural usa função inexistente
 
@@ -113,7 +113,7 @@
 - **Severidade:** Alta
 - **Impacto:** a operação não funciona para nenhuma entrada válida.
 - **Possível solução:** `return np.log(x)`
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-06 - Logaritmo base 10 usa a função errada
 
@@ -131,7 +131,7 @@
 - **Severidade:** Alta
 - **Impacto:** a operação devolve valor incorreto para todas as entradas.
 - **Possível solução:** `return np.log10(x)`
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-07 - Logaritmo base 10 aceita o valor 0
 
@@ -149,7 +149,7 @@
 - **Severidade:** Média
 - **Impacto:** valor matemático inválido exibido como resultado.
 - **Possível solução:** trocar a condição para `x <= 0`.
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-08 - Seno listado no menu, mas não implementado
 
@@ -166,7 +166,7 @@
 - **Severidade:** Média
 - **Impacto:** funcionalidade anunciada ao usuário não existe.
 - **Possível solução:** implementar a função `seno` e adicionar a opção `10` ao fluxo.
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-09 - Cosseno chama função inexistente
 
@@ -185,7 +185,7 @@
 - **Severidade:** Alta
 - **Impacto:** a operação está no menu, mas derruba o programa.
 - **Possível solução:** implementar `cosseno` convertendo graus para radianos (`np.cos(np.radians(x))`).
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-10 - Tangente chama função inexistente
 
@@ -204,7 +204,7 @@
 - **Severidade:** Alta
 - **Impacto:** a operação está no menu, mas derruba o programa.
 - **Possível solução:** implementar `tangente` com o parâmetro `radianos` ou ajustar a chamada.
-- **Status:** Não resolvido
+- **Status:** Resolvido em 07/11/2026
 
 ## BUG-11 - Menu executa ao importar o arquivo
 
@@ -254,6 +254,109 @@ Foram adicionados testes de regressão (`fatorial(0)`, `fatorial(1)`, subtraçã
 
 ![Todos os testes](evidencias/tdd-03-todos-testes.png)
 
-### Observação
+---
 
-O BUG-04 (fatorial de número negativo) continua aberto. Ele não foi tratado nesta correção para manter a mudança mínima.
+## Correção dos demais bugs com TDD (Sprint 2)
+
+Depois da entrega inicial, os demais bugs também foram corrigidos, um de cada vez, seguindo o mesmo ciclo: **Red** (teste que falha, com commit), **Green** (correção mínima, com commit e push só quando todos os testes passam) e, quando havia o que melhorar, **Refactor**. Nas correções abaixo de uma ou duas linhas, não houve refatoração necessária. Data: 07/11/2026.
+
+### BUG-01 - Adição
+
+- **O que foi alterado:** na função `adicao`, `return x + np.add(x, y)` passou a ser `return x + y`.
+- **Por que foi alterado:** o `x` era somado duas vezes (uma direto e outra dentro de `np.add`).
+- **Como isso resolve o bug:** `adicao(2, 3)` passa a devolver `5`, em vez de `7`.
+- **Red:** teste `test_adicao` (`assert adicao(2, 3) == 5`) falhou com `assert 7 == 5`. Commit: `test: adiciona teste que falha para BUG-01 (adicao)`.
+
+  ![Red BUG-01](evidencias/tdd-bug01-red.png)
+
+- **Green:** com a correção, todos os 8 testes passaram.
+
+  ![Green BUG-01](evidencias/tdd-bug01-green.png)
+
+### BUG-02 - Divisão por zero
+
+- **O que foi alterado:** na função `divisao`, foi adicionada a verificação `if y == 0:` antes do cálculo, devolvendo `"Erro: Divisão por zero"`.
+- **Por que foi alterado:** a divisão por zero lançava `ZeroDivisionError` e fechava o programa.
+- **Como isso resolve o bug:** `divisao(10, 0)` passa a devolver a mensagem de erro e o programa continua funcionando.
+- **Red:** testes `test_divisao` (`divisao(10, 2) == 5`) e `test_divisao_por_zero` (`divisao(10, 0) == "Erro: Divisão por zero"`). O segundo falhou com `ZeroDivisionError`. Commit: `test: adiciona testes para BUG-02 (divisao por zero)`.
+
+  ![Red BUG-02](evidencias/tdd-bug02-red.png)
+
+- **Green:** os 10 testes passaram. Commit: `fix: trata divisao por zero (BUG-02)`.
+
+  ![Green BUG-02](evidencias/tdd-bug02-green.png)
+
+### BUG-05 - Logaritmo natural
+
+- **O que foi alterado:** na função `logaritmo_natural`, `np.ln(x)` passou a ser `np.log(x)`.
+- **Por que foi alterado:** o numpy não possui `np.ln`; o logaritmo natural é `np.log`.
+- **Como isso resolve o bug:** `logaritmo_natural(10)` passa a devolver aproximadamente `2.302585`, sem erro.
+- **Red:** testes `test_logaritmo_natural` e `test_logaritmo_natural_nao_positivo` (este protege a validação que já funcionava). O primeiro falhou com `AttributeError: module 'numpy' has no attribute 'ln'`. Commit: `test: adiciona testes para BUG-05 (logaritmo natural)`.
+
+  ![Red BUG-05](evidencias/tdd-bug05-red.png)
+
+- **Green:** os 12 testes passaram. Commit: `fix: usa np.log no logaritmo natural (BUG-05)`.
+
+  ![Green BUG-05](evidencias/tdd-bug05-green.png)
+
+### BUG-06 e BUG-07 - Logaritmo base 10
+
+Os dois bugs estão na mesma função (`logaritmo_base10`) e foram corrigidos juntos, cada um com seu próprio teste.
+
+- **O que foi alterado:** `np.log(x)` passou a ser `np.log10(x)` (BUG-06) e a condição `if x < 0:` passou a ser `if x <= 0:` (BUG-07).
+- **Por que foi alterado:** `np.log` calcula o logaritmo natural, não o de base 10; e o valor 0 passava pela validação, devolvendo `-inf`.
+- **Como isso resolve os bugs:** `logaritmo_base10(100)` passa a devolver `2.0` e `logaritmo_base10(0)` devolve a mensagem de erro.
+- **Red:** testes `test_logaritmo_base10` (falhou com `4.605... - 2.0`) e `test_logaritmo_base10_zero` (falhou com `-inf`). Commit: `test: adiciona testes para BUG-06 e BUG-07 (log base 10)`.
+
+  ![Red BUG-06 e BUG-07](evidencias/tdd-bug06-07-red.png)
+
+- **Green:** os 14 testes passaram. Commit: `fix: corrige log base 10 e validacao de zero (BUG-06 e BUG-07)`.
+
+  ![Green BUG-06 e BUG-07](evidencias/tdd-bug06-07-green.png)
+
+### BUG-04 - Fatorial de número negativo
+
+- **O que foi alterado:** na função `fatorial`, foi adicionado `if x < 0: return "Erro: Fatorial de número negativo"` antes do laço.
+- **Por que foi alterado:** o fatorial de número negativo não existe, mas a função devolvia `1` sem avisar.
+- **Como isso resolve o bug:** `fatorial(-3)` passa a devolver a mensagem de erro.
+- **Red:** teste `test_fatorial_negativo` falhou com `assert 1 == 'Erro: Fatorial de número negativo'`. Commit: `test: adiciona teste para BUG-04 (fatorial negativo)`.
+
+  ![Red BUG-04](evidencias/tdd-bug04-red.png)
+
+- **Green:** os 15 testes passaram. Commit: `fix: valida fatorial de numero negativo (BUG-04)`.
+
+  ![Green BUG-04](evidencias/tdd-bug04-green.png)
+
+### BUG-09 e BUG-10 - Cosseno e tangente
+
+- **O que foi alterado:** foram criadas as funções `cosseno(x, radianos=False)` e `tangente(x, radianos=False)`. Quando `radianos` é `False`, o ângulo em graus é convertido com `np.radians` antes de calcular `np.cos` ou `np.tan`.
+- **Por que foi alterado:** o menu chamava funções que não existiam, e o programa fechava com `NameError`. O parâmetro `radianos` manteve o formato com que o menu já chamava as funções.
+- **Como isso resolve os bugs:** `cosseno(60)` devolve aproximadamente `0.5` e `tangente(45)` devolve aproximadamente `1.0`.
+- **Red:** testes `test_cosseno_de_60_graus` e `test_tangente_de_45_graus`. O pytest nem conseguiu importar as funções (`ImportError: cannot import name 'cosseno'`), o que conta como Red. Commit: `test: adiciona testes para BUG-09 e BUG-10 (cosseno e tangente)`.
+
+  ![Red BUG-09 e BUG-10](evidencias/tdd-bug09-10-red.png)
+
+- **Green:** os 17 testes passaram. Commit: `fix: implementa cosseno e tangente (BUG-09 e BUG-10)`.
+
+  ![Green BUG-09 e BUG-10](evidencias/tdd-bug09-10-green.png)
+
+### BUG-08 - Seno
+
+- **O que foi alterado:** foi criada a função `seno(x, radianos=False)` (mesmo padrão do cosseno) e foi adicionado o bloco `elif escolha == '10':` em `calculadora_cientifica`, pedindo o ângulo em graus e mostrando o resultado.
+- **Por que foi alterado:** o menu anunciava "10. Seno", mas não existia a função nem o tratamento da opção, que caía em "Operação inválida".
+- **Como isso resolve o bug:** `seno(30)` devolve aproximadamente `0.5`, e a opção 10 do menu passa a funcionar.
+- **Red:** teste `test_seno_de_30_graus` falhou com `ImportError: cannot import name 'seno'`. Commit: `test: adiciona teste para BUG-08 (seno)`.
+
+  ![Red BUG-08](evidencias/tdd-bug08-red.png)
+
+- **Green:** com a função `seno`, os 18 testes passaram. Commit: `fix: implementa seno (BUG-08)`.
+
+  ![Green BUG-08](evidencias/tdd-bug08-green.png)
+
+- **Menu:** como o menu depende de `input`, essa parte foi verificada manualmente: opção `10`, ângulo `30`, resultado `0.49999999999999994` (aproximadamente `0.5`, por arredondamento do computador). Commit: `fix: liga opcao 10 do menu ao seno (BUG-08)`.
+
+  ![Menu opção 10](evidencias/tdd-bug08-menu-opcao10.png)
+
+### Verificação final
+
+Os 18 testes automatizados passam, então as correções não introduziram novos bugs nas funções que já funcionavam (subtração, multiplicação, raiz quadrada e fatorial seguiram passando em todas as rodadas). Os 11 bugs relatados estão resolvidos.
