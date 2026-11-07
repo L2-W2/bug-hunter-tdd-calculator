@@ -32,7 +32,7 @@ def fatorial(x):
 def logaritmo_natural(x):
     if x <= 0:
         return "Erro: Logaritmo de número não positivo"
-    return np.ln(x)
+    return np.log(x)
 
 def logaritmo_base10(x):
     if x < 0:
