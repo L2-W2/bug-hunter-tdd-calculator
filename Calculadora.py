@@ -41,6 +41,16 @@ def logaritmo_base10(x):
         return "Erro: Logaritmo de número não positivo"
     return np.log10(x)
 
+def cosseno(x, radianos=False):
+    if not radianos:
+        x = np.radians(x)
+    return np.cos(x)
+
+def tangente(x, radianos=False):
+    if not radianos:
+        x = np.radians(x)
+    return np.tan(x)
+
 def menu():
     print("Bem-vindo à Calculadora Científica")
     print("Escolha a operação que deseja realizar:")
