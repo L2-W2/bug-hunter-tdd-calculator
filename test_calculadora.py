@@ -1,4 +1,4 @@
-from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada
+from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao
 
 
 def test_fatorial_de_5():
@@ -27,3 +27,6 @@ def test_raiz_quadrada():
 
 def test_raiz_quadrada_negativa():
     assert raiz_quadrada(-4) == "Erro: Raiz quadrada de número negativo"
+
+def test_adicao():
+    assert adicao(2, 3) == 5
