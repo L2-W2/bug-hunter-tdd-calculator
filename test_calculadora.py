@@ -1,4 +1,4 @@
-from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao
+from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural
 
 
 def test_fatorial_de_5():
@@ -28,8 +28,10 @@ def test_raiz_quadrada():
 def test_raiz_quadrada_negativa():
     assert raiz_quadrada(-4) == "Erro: Raiz quadrada de número negativo"
 
+
 def test_adicao():
     assert adicao(2, 3) == 5
+
 
 def test_divisao():
     assert divisao(10, 2) == 5
@@ -37,3 +39,11 @@ def test_divisao():
 
 def test_divisao_por_zero():
     assert divisao(10, 0) == "Erro: Divisão por zero"
+
+
+def test_logaritmo_natural():
+    assert abs(logaritmo_natural(10) - 2.302585) < 0.0001
+
+
+def test_logaritmo_natural_nao_positivo():
+    assert logaritmo_natural(0) == "Erro: Logaritmo de número não positivo"
