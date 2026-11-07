@@ -1,4 +1,4 @@
-from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural, logaritmo_base10
+from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural, logaritmo_base10, cosseno, tangente
 
 
 def test_fatorial_de_5():
@@ -59,3 +59,11 @@ def test_logaritmo_base10_zero():
 
 def test_fatorial_negativo():
     assert fatorial(-3) == "Erro: Fatorial de número negativo"
+
+
+def test_cosseno_de_60_graus():
+    assert abs(cosseno(60) - 0.5) < 0.0001
+
+
+def test_tangente_de_45_graus():
+    assert abs(tangente(45) - 1.0) < 0.0001
