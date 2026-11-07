@@ -21,6 +21,7 @@ def raiz_quadrada(x):
     return np.sqrt(x)
 
 def fatorial(x):
+    """Retorna o fatorial de x (produto dos inteiros de 1 até x)."""
     fat = 1
     for i in range(1, x+1):
         fat *= i
