@@ -109,6 +109,10 @@ def calculadora_cientifica():
     elif escolha == '9':
         x = float(input("Digite o número: "))
         print("Resultado:", logaritmo_base10(x))
+
+    elif escolha == '10':
+        x = float(input("Digite o ângulo em graus: "))
+        print("Resultado:", seno(x))
     
     elif escolha == '11':
         x = float(input("Digite o ângulo em graus: "))
