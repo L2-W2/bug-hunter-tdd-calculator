@@ -1,4 +1,4 @@
-from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural
+from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural, logaritmo_base10
 
 
 def test_fatorial_de_5():
@@ -47,3 +47,11 @@ def test_logaritmo_natural():
 
 def test_logaritmo_natural_nao_positivo():
     assert logaritmo_natural(0) == "Erro: Logaritmo de número não positivo"
+
+
+def test_logaritmo_base10():
+    assert abs(logaritmo_base10(100) - 2.0) < 0.0001
+
+
+def test_logaritmo_base10_zero():
+    assert logaritmo_base10(0) == "Erro: Logaritmo de número não positivo"
