@@ -1,4 +1,4 @@
-from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural, logaritmo_base10, cosseno, tangente
+from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao, logaritmo_natural, logaritmo_base10, cosseno, tangente, seno
 
 
 def test_fatorial_de_5():
@@ -67,3 +67,7 @@ def test_cosseno_de_60_graus():
 
 def test_tangente_de_45_graus():
     assert abs(tangente(45) - 1.0) < 0.0001
+
+
+def test_seno_de_30_graus():
+    assert abs(seno(30) - 0.5) < 0.0001
