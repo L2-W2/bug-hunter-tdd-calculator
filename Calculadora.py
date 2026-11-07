@@ -35,9 +35,9 @@ def logaritmo_natural(x):
     return np.log(x)
 
 def logaritmo_base10(x):
-    if x < 0:
+    if x <= 0:
         return "Erro: Logaritmo de número não positivo"
-    return np.log(x)
+    return np.log10(x)
 
 def menu():
     print("Bem-vindo à Calculadora Científica")
