@@ -1,4 +1,4 @@
-from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao
+from Calculadora import fatorial, subtracao, multiplicacao, raiz_quadrada, adicao, divisao
 
 
 def test_fatorial_de_5():
@@ -30,3 +30,10 @@ def test_raiz_quadrada_negativa():
 
 def test_adicao():
     assert adicao(2, 3) == 5
+
+def test_divisao():
+    assert divisao(10, 2) == 5
+
+
+def test_divisao_por_zero():
+    assert divisao(10, 0) == "Erro: Divisão por zero"
